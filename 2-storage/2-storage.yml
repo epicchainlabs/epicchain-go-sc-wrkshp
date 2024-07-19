@@ -1,0 +1,7 @@
+name: "Storage contract"
+supportedstandards: []
+events:
+  - name: info
+    parameters:
+      - name: message
+        type: ByteString

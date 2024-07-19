@@ -1,0 +1,9 @@
+*.avm
+*.nef
+*~
+*.orig
+*.rej
+*.manifest.json
+*.debug.json
+*idea
+
