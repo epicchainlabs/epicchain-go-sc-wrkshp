@@ -2,10 +2,10 @@
 
 ## EpicChain
 As you know network is composed of nodes. These nodes as of now have several implementations:
-- https://github.com/epicchain-project/neo
-- https://github.com/nspcc-dev/epicchain-go
+- https://github.com/epicchainlabs/epicchain
+- https://github.com/epicchainlabs/epicchain-go
 
-This article is about the last one since we’re developing it at NeoSPCC. 
+This article is about the last one since we’re developing it at EpicChain. 
 Hope that this article will help you to get an idea of how everything is tied up and being able to start epicchain-go node,
  write smart contract and deploy it.
  
@@ -39,13 +39,6 @@ Follow the link if you are interested in more detailed description
 Another usage example is to compile smart contract:
 ```
 $ ./bin/epicchain-go vm 
-
-    _   ____________        __________      _    ____  ___
-   / | / / ____/ __ \      / ____/ __ \    | |  / /  |/  /
-  /  |/ / __/ / / / /_____/ / __/ / / /____| | / / /|_/ / 
- / /|  / /___/ /_/ /_____/ /_/ / /_/ /_____/ |/ / /  / /  
-/_/ |_/_____/\____/      \____/\____/      |___/_/  /_/   
-
 
 epicchain-GO-VM >  
 ```
