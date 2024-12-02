@@ -12,29 +12,29 @@ import (
 
 	storagecontract "dApp/rpc_wrapper"
 
-	"github.com/nspcc-dev/neo-go/pkg/config"
-	"github.com/nspcc-dev/neo-go/pkg/core/block"
-	"github.com/nspcc-dev/neo-go/pkg/core/native/nativenames"
-	"github.com/nspcc-dev/neo-go/pkg/core/state"
-	"github.com/nspcc-dev/neo-go/pkg/core/transaction"
-	"github.com/nspcc-dev/neo-go/pkg/neorpc"
-	"github.com/nspcc-dev/neo-go/pkg/neorpc/result"
-	"github.com/nspcc-dev/neo-go/pkg/rpcclient"
-	"github.com/nspcc-dev/neo-go/pkg/rpcclient/actor"
-	"github.com/nspcc-dev/neo-go/pkg/rpcclient/gas"
-	"github.com/nspcc-dev/neo-go/pkg/rpcclient/invoker"
-	"github.com/nspcc-dev/neo-go/pkg/rpcclient/management"
-	"github.com/nspcc-dev/neo-go/pkg/rpcclient/nep17"
-	"github.com/nspcc-dev/neo-go/pkg/rpcclient/policy"
-	"github.com/nspcc-dev/neo-go/pkg/rpcclient/unwrap"
-	"github.com/nspcc-dev/neo-go/pkg/smartcontract"
-	"github.com/nspcc-dev/neo-go/pkg/smartcontract/manifest"
-	"github.com/nspcc-dev/neo-go/pkg/smartcontract/nef"
-	"github.com/nspcc-dev/neo-go/pkg/smartcontract/trigger"
-	"github.com/nspcc-dev/neo-go/pkg/util"
-	"github.com/nspcc-dev/neo-go/pkg/vm/stackitem"
-	"github.com/nspcc-dev/neo-go/pkg/vm/vmstate"
-	"github.com/nspcc-dev/neo-go/pkg/wallet"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/config"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/core/block"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/core/native/nativenames"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/core/state"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/core/transaction"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/neorpc"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/neorpc/result"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/actor"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/gas"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/invoker"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/management"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/nep17"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/policy"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/unwrap"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/smartcontract"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/smartcontract/manifest"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/smartcontract/nef"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/smartcontract/trigger"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/util"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/vm/stackitem"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/vm/vmstate"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/wallet"
 	"github.com/pkg/errors"
 )
 
@@ -58,7 +58,7 @@ func main() {
 	// some GAS from multisignature to a simple account and compile the example
 	// storage contract.
 
-	// Simple RPC client: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient
+	// Simple RPC client: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient
 	c, err := rpcclient.New(context.Background(), rpcEndpoint, rpcclient.Options{}) // Default options will be used.
 	check(err, "create RPC client")
 	defer c.Close()
@@ -67,7 +67,7 @@ func main() {
 	check(err, "init RPC client")
 	fmt.Printf("Work with simple RPC client:\n\n")
 
-	// Simple RPC methods: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient#hdr-Client
+	// Simple RPC methods: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient#hdr-Client
 	v, err := c.GetVersion()
 	check(err, "retrieve version")
 	fmt.Printf("RPC node version: %s\n", v.UserAgent)
@@ -102,9 +102,9 @@ func main() {
 	fmt.Printf("Transfer applog invocation state: %s\nTransfer applog stack: %s\n", applog.Executions[0].VMState, stack)
 
 	// Almost all JSON RPC API methods are supported by the NeoGo RPC client. For details
-	// on unsupported methods read the https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient#hdr-Client.
+	// on unsupported methods read the https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient#hdr-Client.
 
-	// Work with wallets: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/wallet
+	// Work with wallets: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/wallet
 	w, err := wallet.NewWalletFromFile(walletPath)
 	check(err, "open wallet")
 
@@ -112,9 +112,9 @@ func main() {
 	err = acc.Decrypt(accPass, w.Scrypt)
 	check(err, "decrypt account")
 
-	// Some of the extensions offered by NeoGo RPC server: https://github.com/nspcc-dev/neo-go/blob/master/docs/rpc.md#extensions.
+	// Some of the extensions offered by NeoGo RPC server: https://github.com/epicchainlabs/epicchain-go-sc-wrkshp/blob/master/docs/rpc.md#extensions.
 	if isNeoGoServer {
-		// NEP17/NEP11 transfers paging: https://github.com/nspcc-dev/neo-go/blob/master/docs/rpc.md#limits-and-paging-for-getnep11transfers-and-getnep17transfers.
+		// NEP17/NEP11 transfers paging: https://github.com/epicchainlabs/epicchain-go-sc-wrkshp/blob/master/docs/rpc.md#limits-and-paging-for-getnep11transfers-and-getnep17transfers.
 		var (
 			start = uint64(0)
 			stop  = currentB.Timestamp
@@ -127,16 +127,16 @@ func main() {
 		check(err, "marshal NEP17 transfers")
 		fmt.Printf("NEP17 transfers of %s:\n%s\n", acc.Address, tBytes)
 
-		// `getblocksysfee` RPC call: https://github.com/nspcc-dev/neo-go/blob/master/docs/rpc.md#getblocksysfee-call
+		// `getblocksysfee` RPC call: https://github.com/epicchainlabs/epicchain-go-sc-wrkshp/blob/master/docs/rpc.md#getblocksysfee-call
 		sysfee, err := c.GetBlockSysFee(nep17T.Received[0].Index)
 		check(err, "getblocksysfee")
 		fmt.Printf("Block #%d system fee: %d\n", nep17T.Received[0].Index, sysfee)
 
-		// For more extensions read the NeoGo RPC server documentation: https://github.com/nspcc-dev/neo-go/blob/master/docs/rpc.md#extensions.
+		// For more extensions read the NeoGo RPC server documentation: https://github.com/epicchainlabs/epicchain-go-sc-wrkshp/blob/master/docs/rpc.md#extensions.
 	}
 
-	// Web-socket client and server: https://github.com/nspcc-dev/neo-go/blob/master/docs/rpc.md#websocket-server
-	// https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient#WSClient
+	// Web-socket client and server: https://github.com/epicchainlabs/epicchain-go-sc-wrkshp/blob/master/docs/rpc.md#websocket-server
+	// https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient#WSClient
 	ctx, cancel := context.WithCancel(context.Background())
 	wsC, err := rpcclient.NewWS(ctx, wsEndpoint, rpcclient.WSOptions{
 		Options:                        rpcclient.Options{},
@@ -155,13 +155,13 @@ func main() {
 	check(err, "getcontractstate")
 	fmt.Printf("GAS contract ID: %d\n", gasState.ID)
 
-	// Unwrap helper package: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/unwrap
+	// Unwrap helper package: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/unwrap
 	dec, err := unwrap.BigInt(wsC.InvokeFunction(gasState.Hash, "decimals", []smartcontract.Parameter{}, nil))
 	check(err, "invokefunction")
 	fmt.Printf("GAS contract decimals: %s\n", dec)
 
 	// All set of methods supported by standard NeoGo JSON RPC client are supported, but there's also
-	// a special extension: notifications subsystem: https://github.com/nspcc-dev/neo-go/blob/master/docs/notifications.md
+	// a special extension: notifications subsystem: https://github.com/epicchainlabs/epicchain-go-sc-wrkshp/blob/master/docs/notifications.md
 	bCh := make(chan *block.Block, 5) // Add some buffer to prevent WSC from blocking even regular requests.
 	ntfCh := make(chan *state.ContainedNotificationEvent, 5)
 	aerCh := make(chan *state.AppExecResult, 5)
@@ -263,7 +263,7 @@ mainLoop:
 		fmt.Printf("WS RPC client closing error: %s\n", err)
 	}
 
-	// Invoker functionality: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/invoker
+	// Invoker functionality: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/invoker
 	ctx, cancel = context.WithCancel(context.Background())
 	wsC, err = rpcclient.NewWS(ctx, wsEndpoint, rpcclient.WSOptions{})
 	check(err, "create WS client")
@@ -288,7 +288,7 @@ mainLoop:
 	check(err, "perform `transfer` testinvoke")
 	fmt.Printf("`transfer` result: %t\n", ok)
 
-	// Historic invocation functionality: https://github.com/nspcc-dev/neo-go/blob/master/docs/rpc.md#invokecontractverifyhistoric-invokefunctionhistoric-and-invokescripthistoric-calls
+	// Historic invocation functionality: https://github.com/epicchainlabs/epicchain-go-sc-wrkshp/blob/master/docs/rpc.md#invokecontractverifyhistoric-invokefunctionhistoric-and-invokescripthistoric-calls
 	invH := invoker.NewHistoricAtHeight(transferB.Index-1, wsC, signers)
 	resH, err := invH.Call(gasState.Hash, "transfer", from, to, amount, data)
 	ok, err = unwrap.Bool(resH, err)
@@ -312,9 +312,9 @@ mainLoop:
 	tEvent.To, _ = util.Uint160DecodeBytesBE(toB)
 	tEvent.Amount, _ = arr[2].TryInteger()
 
-	// A set of other invoker methods: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/invoker
+	// A set of other invoker methods: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/invoker
 
-	// Actor functionality: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/actor
+	// Actor functionality: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/actor
 	actSigners := []actor.SignerAccount{
 		{
 			Signer:  signers[0],
@@ -358,13 +358,13 @@ mainLoop:
 		panic("unexpected `transfer` tuned result")
 	}
 
-	// A set of other Actor methods: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/actor
+	// A set of other Actor methods: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/actor
 
 	// In general, Actor API is very flexible, but if it's not enough, then you can always
 	// use customizable actor:
 	// _, _ = actor.NewTuned(wsC, actSigners, actor.Options{})
 
-	// NEP17 package: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/nep17
+	// NEP17 package: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/nep17
 	nep17Act := nep17.New(act, gasState.Hash)
 
 	d, err := nep17Act.Decimals()
@@ -394,7 +394,7 @@ mainLoop:
 	fmt.Printf("GAS multitransfer events:\n%s\n", transferEventsBytes)
 
 	// Native-specific actor packages (there are a lot of them, but here's the example
-	// for native GasToken contract): https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/gas
+	// for native GasToken contract): https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/gas
 	gasAct := gas.New(act)
 	fromBalance, err := gasAct.BalanceOf(from)
 	check(err, "retrieve `acc` balance")
@@ -406,18 +406,18 @@ mainLoop:
 	fmt.Printf("FeePerByte value: %d\n", feePerByte)
 
 	// A set of other native-specific actors are supported:
-	// NeoToken: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/neo
-	// ContractManagement: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/management
-	// PolicyContract: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/policy
-	// OracleContract: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/oracle
-	// RoleManagement: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/rolemgmt
-	// Notary: https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/notary
+	// NeoToken: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/neo
+	// ContractManagement: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/management
+	// PolicyContract: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/policy
+	// OracleContract: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/oracle
+	// RoleManagement: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/rolemgmt
+	// Notary: https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/notary
 
 	// Contract deployment example using native-specific management actor:
-	// https://pkg.go.dev/github.com/nspcc-dev/neo-go/pkg/rpcclient/management
+	// https://pkg.go.dev/github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/rpcclient/management
 
 	// First of all, compile the storage contract example via NeoGo CLI.
-	// The example is located at the NeoGo repo: https://github.com/nspcc-dev/neo-go/tree/master/examples/storage
+	// The example is located at the NeoGo repo: https://github.com/epicchainlabs/epicchain-go-sc-wrkshp/tree/master/examples/storage
 	// To compile storage contract use the following NeoGo CLI command.
 	// Modify the paths correspondingly if you have storage contract located at a
 	// different place, and adjust the `manifestPath` and `nefPath` constants.
@@ -495,7 +495,7 @@ mainLoop:
 	// NeoGo provides the ability to generate RPC bindings for Neo smart contract
 	// written in Go or in any other programming language. However, using NeoGo
 	// compiler with Go smart contracts allows to get more precise resulting RPC
-	// binding. See the https://github.com/nspcc-dev/neo-go/blob/master/docs/compiler.md#generating-rpc-contract-bindings
+	// binding. See the https://github.com/epicchainlabs/epicchain-go-sc-wrkshp/blob/master/docs/compiler.md#generating-rpc-contract-bindings
 	// for details on bindings autogeneration.
 	//
 	// To compile example Storage contract and generate RPC binding for it use

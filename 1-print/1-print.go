@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/nspcc-dev/neo-go/pkg/interop/runtime"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/interop/runtime"
 )
 
 func Main() {

@@ -2,9 +2,9 @@
 package storagecontract
 
 import (
-	"github.com/nspcc-dev/neo-go/pkg/core/transaction"
-	"github.com/nspcc-dev/neo-go/pkg/smartcontract"
-	"github.com/nspcc-dev/neo-go/pkg/util"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/core/transaction"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/smartcontract"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/util"
 )
 
 // Actor is used by Contract to call state-changing methods.

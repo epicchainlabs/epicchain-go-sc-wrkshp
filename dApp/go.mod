@@ -3,7 +3,7 @@ module dApp
 go 1.18
 
 require (
-	github.com/nspcc-dev/neo-go v0.101.5-0.20230802075307-afa4530c7d73
+	github.com/epicchainlabs/epicchain-go-sc-wrkshp v0.101.5-0.20230802075307-afa4530c7d73
 	github.com/pkg/errors v0.9.1
 )
 

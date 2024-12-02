@@ -1,8 +1,8 @@
 package domain
 
 import (
-	"github.com/nspcc-dev/neo-go/pkg/interop/runtime"
-	"github.com/nspcc-dev/neo-go/pkg/interop/storage"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/interop/runtime"
+	"github.com/epicchainlabs/epicchain-go-sc-wrkshp/pkg/interop/storage"
 )
 
 var ctx storage.Context
